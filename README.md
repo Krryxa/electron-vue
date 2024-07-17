@@ -29,11 +29,11 @@ yarn start
 ### Type-Check, Compile and Minify for Production
 
 ```sh
-npm run build
+yarn make
 ```
 
 ### Lint with [ESLint](https://eslint.org/)
 
 ```sh
-npm run lint
+yarn lint
 ```
