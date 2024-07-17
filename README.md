@@ -1,6 +1,6 @@
 # electron-vue
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue3 Electron Vite
 
 ## Recommended IDE Setup
 
@@ -17,13 +17,13 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 ## Project Setup
 
 ```sh
-npm install
+yarn
 ```
 
 ### Compile and Hot-Reload for Development
 
 ```sh
-npm run dev
+yarn start
 ```
 
 ### Type-Check, Compile and Minify for Production
