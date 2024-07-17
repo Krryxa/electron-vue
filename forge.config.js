@@ -12,6 +12,13 @@ export default {
       config: {},
     },
     {
+      name: '@electron-forge/maker-dmg',
+      config: {
+        // background: './assets/dmg-background.png',
+        // format: 'ULFO'
+      }
+    },
+    {
       name: '@electron-forge/maker-zip',
       platforms: ['darwin'],
     },
