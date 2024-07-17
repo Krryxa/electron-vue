@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "main": "electron/main.js",
+  "description": "The Project of Electron + Vue + Vite + Electron Forge",
+  "author": "Krry",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "serve": "electron .",
@@ -14,8 +17,8 @@
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
+    "package": "yarn build && electron-forge package",
+    "make": "yarn build && electron-forge make"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1",
@@ -41,6 +44,7 @@
     "@vue/tsconfig": "^0.5.1",
     "concurrently": "^8.2.2",
     "electron": "^31.2.0",
+    "electron-is-dev": "^3.0.1",
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.23.0",
     "npm-run-all2": "^6.2.0",

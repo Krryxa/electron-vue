@@ -2,7 +2,12 @@
 
 // Modules to control application life and create native browser window
 import { app, BrowserWindow } from 'electron'
-import path from 'node:path'
+import path, { dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import isDev from 'electron-is-dev'
+
+// ESM（ECMAScript Module）环境中，__dirname 和 __filename 这两个全局变量是未定义的，需要手动定义：获取文件所在目录
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const createWindow = () => {
   // Create the browser window.
@@ -12,16 +17,21 @@ const createWindow = () => {
     // 不能直接在主进程中编辑DOM，因为它无法访问渲染器文档上下文，存在于两个不同的进程
     // 所以需要预加载脚本：在渲染器进程加载之前加载，并有权访问两个渲染器全局 (例如 window 和 document) 和 Node.js 环境
     webPreferences: {
-      preload: path.join(path.resolve(), 'preload.js')
+      preload: path.join(__dirname, 'preload.js')
     }
   })
 
-  // 加载 index.html
-  // mainWindow.loadFile('index.html')
-  mainWindow.loadURL('http://localhost:5173/')
+  // prod 环境不建议再用 loadURL 读取
+  // const prodURL = `file://${path.join(__dirname, 'pages/index.html')}`
+
+  // dev 环境建议 loadURL（可热更新）
+  // prod 环境建议 loadFile（不同项目具体分析）
+  isDev
+    ? mainWindow.loadURL('http://localhost:5173')
+    : mainWindow.loadFile(path.resolve(__dirname, 'pages/index.html'))
 
   // 打开开发工具
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 }
 
 // 这段程序将会在 Electron 结束初始化

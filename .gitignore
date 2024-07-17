@@ -30,3 +30,5 @@ coverage
 *.tsbuildinfo
 
 out/
+
+electron/pages
