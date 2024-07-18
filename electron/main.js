@@ -30,7 +30,7 @@ const createWindow = () => {
     ? mainWindow.loadURL('http://localhost:5173')
     : mainWindow.loadFile(path.resolve(__dirname, 'pages/index.html'))
 
-  // 打开开发工具
+  // 开发环境默认打开调试工具
   isDev && mainWindow.webContents.openDevTools()
 }
 
