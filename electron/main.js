@@ -34,9 +34,8 @@ const createWindow = () => {
   isDev && mainWindow.webContents.openDevTools()
 }
 
-// 这段程序将会在 Electron 结束初始化
-// 和创建浏览器窗口的时候调用
-// 部分 API 在 ready 事件触发后才能使用。
+// 这段程序将会在 Electron 结束初始化和创建浏览器窗口的时候调用
+// 部分 API 在 ready 事件触发后才能使用
 app.whenReady().then(() => {
   createWindow()
 
@@ -47,12 +46,11 @@ app.whenReady().then(() => {
   })
 })
 
-// 除了 macOS 外，当所有窗口都被关闭的时候退出程序。 因此, 通常
-// 对应用程序和它们的菜单栏来说应该时刻保持激活状态, 
-// 直到用户使用 Cmd + Q 明确退出
+// 除了 macOS 外，当所有窗口都被关闭的时候退出程序
+// 因此，通常对应用程序和它们的菜单栏来说应该时刻保持激活状态，直到用户使用 Cmd + Q 明确退出
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
 
 // 在当前文件中你可以引入所有的主进程代码
-// 也可以拆分成几个文件，然后用 require 导入。
+// 也可以拆分成几个文件，然后用 require 导入
