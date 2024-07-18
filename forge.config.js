@@ -16,12 +16,16 @@ export default {
     {
       name: '@electron-forge/maker-dmg',
       config: {
-        // background: './assets/dmg-background.png',
-        // format: 'ULFO'
+        name: 'MAC-灵魂莲华',
+        background: './electron/images/mac/bg.png',
+        icon: './electron/images/mac/icon.icns', // installer icons
+        iconSize: 120,
+        format: 'ULFO'
       }
     },
     {
       name: '@electron-forge/maker-zip',
+      config: {},
       platforms: ['darwin']
     },
     {
