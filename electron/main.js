@@ -12,8 +12,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1400,
+    height: 900,
     // 不能直接在主进程中编辑DOM，因为它无法访问渲染器文档上下文，存在于两个不同的进程
     // 所以需要预加载脚本：在渲染器进程加载之前加载，并有权访问两个渲染器全局 (例如 window 和 document) 和 Node.js 环境
     webPreferences: {
