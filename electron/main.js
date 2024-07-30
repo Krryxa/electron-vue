@@ -2,12 +2,13 @@
 
 // Modules to control application life and create native browser window
 import { app, BrowserWindow } from 'electron'
-import path, { dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import path from 'node:path'
 import isDev from 'electron-is-dev'
+import loadPage from './process/loadPage.js'
+import getDirname from './process/dirname.js'
+import './process/createWin.js'
 
-// ESM（ECMAScript Module）环境中，__dirname 和 __filename 这两个全局变量是未定义的，需要手动定义：获取文件所在目录
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const __dirname = getDirname(import.meta.url)
 
 const createWindow = () => {
   // Create the browser window.
@@ -17,18 +18,13 @@ const createWindow = () => {
     // 不能直接在主进程中编辑DOM，因为它无法访问渲染器文档上下文，存在于两个不同的进程
     // 所以需要预加载脚本：在渲染器进程加载之前加载，并有权访问两个渲染器全局 (例如 window 和 document) 和 Node.js 环境
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      nodeIntegration: true,
+      preload: path.join(__dirname, 'preload/index.mjs')
     }
   })
 
-  // prod 环境不建议再用 loadURL 读取
-  // const prodURL = `file://${path.join(__dirname, 'pages/index.html')}`
-
-  // dev 环境建议 loadURL（可热更新）
-  // prod 环境建议 loadFile（不同项目具体分析）
-  isDev
-    ? mainWindow.loadURL('http://localhost:5173')
-    : mainWindow.loadFile(path.resolve(__dirname, 'pages/index.html'))
+  // 加载页面
+  loadPage(mainWindow)
 
   // 开发环境默认打开调试工具
   isDev && mainWindow.webContents.openDevTools()
@@ -53,4 +49,4 @@ app.on('window-all-closed', () => {
 })
 
 // 在当前文件中你可以引入所有的主进程代码
-// 也可以拆分成几个文件，然后用 require 导入
+// 也可以拆分成几个文件，然后用 import 导入
