@@ -7,7 +7,7 @@ const openChild = () => {
     modal: true, // 模态窗口，禁用父窗口
     width: 800,
     height: 400,
-    router: '/#/about'
+    router: 'about'
   })
 }
 </script>

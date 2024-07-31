@@ -11,6 +11,8 @@ const __dirname = getDirname(import.meta.url)
 // prod 环境建议 loadFile（不同项目具体分析）
 export default (win, router = '') => {
   isDev
-    ? win.loadURL(`http://localhost:5173${router}`)
-    : win.loadFile(path.resolve(__dirname, `pages/index.html${router}`))
+    ? win.loadURL(`http://localhost:5173/#/${router}`)
+    : win.loadFile(path.resolve(__dirname, `../pages/index.html`), {
+        hash: router
+      })
 }
