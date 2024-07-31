@@ -18,9 +18,14 @@ export default {
       config: {
         name: 'MAC-灵魂莲华',
         background: './electron/images/mac/bg.png',
-        icon: './electron/images/mac/icon.icns', // installer icons
+        icon: './electron/images/mac/icon.icns', // 打开 dmg 的桌面图标
         iconSize: 120,
-        format: 'ULFO'
+        format: 'ULFO',
+        // additionalDMGOptions: {
+        //   window: {
+        //     size: { width: 700, height: 700 } // dmg 窗口大小
+        //   }
+        // }
       }
     },
     {
