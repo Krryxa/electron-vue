@@ -14,7 +14,7 @@ const openChildWindow = (parent, params) => {
     width,
     height,
     webPreferences: {
-      nodeIntegration: true,
+      sandbox: false,
       preload: path.join(__dirname, '../preload/api.mjs')
     }
   })

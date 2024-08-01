@@ -18,7 +18,7 @@ const createWindow = () => {
     // 不能直接在主进程中编辑DOM，因为它无法访问渲染器文档上下文，存在于两个不同的进程
     // 所以需要预加载脚本：在渲染器进程加载之前加载，并有权访问两个渲染器全局 (例如 window 和 document) 和 Node.js 环境
     webPreferences: {
-      nodeIntegration: true,
+      sandbox: false,
       preload: path.join(__dirname, 'preload/index.mjs')
     }
   })
